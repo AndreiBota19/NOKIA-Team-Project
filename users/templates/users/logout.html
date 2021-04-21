@@ -1,0 +1,14 @@
+{%extends "WebApp/base.html"%}
+
+{% load crispy_forms_tags %}
+
+{%block content%}
+    <h3>You Have Been Logged Out!</h3>
+    <div class="border-top pt-3">
+        <small class ="text-muted">
+            Log In Again
+            <a href="{% url 'login' %}">Sign In</a>
+        </small>
+     </div>
+   
+{%endblock content%}
