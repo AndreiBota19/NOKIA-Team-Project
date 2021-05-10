@@ -2,7 +2,139 @@
 
 {% block content%}
 
-  <h1> Home </h1>
+  <h3> Filter </h3>
 
-  {%endblock content%}
+
+  <form method="GET" action=".">
+      <div class="form-row">
+        <div class ="form-group col-10">
+          <div class="input-group">
+         
+            <input class="form-control py-2 border-right-0 border" type="search" name="personal_id_is" placeholder="Search by student's personal id">
+            <span class="input-group-append">
+              <div class="input-group-text bg-transparent">
+                <i class="fa fa-search"></i>
+              </div>
+            </span>
+        </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class ="form-group col-10">
+          <div class="input-group">
+            <input class="form-control py-2 border-right-0 border" type="search" name="first_name_contains" placeholder="Search by first name">
+            <span class="input-group-append">
+              <div class="input-group-text bg-transparent">
+                <i class="fa fa-search"></i>
+              </div>
+            </span>
+        </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class ="form-group col-10">
+          <div class="input-group">
+            <input class="form-control py-2 border-right-0 border" type="search" name="last_name_contains" placeholder="Search by last name">
+            <span class="input-group-append">
+              <div class="input-group-text bg-transparent">
+                <i class="fa fa-search"></i>
+              </div>
+            </span>
+        </div>
+        </div>
+      </div>
+
+      <div class="form-row"> 
+        <div class ="form-group col-md-5">
+          <div class="input-group">
+            <input class="form-control py-2 border-right-0 border" type="search" name="university_contains" placeholder="Search by University">
+            <span class="input-group-append">
+              <div class="input-group-text bg-transparent">
+                <i class="fa fa-search"></i>
+              </div>
+            </span>
+        </div> 
+      </div>
+
+      
+      <div class ="form-group col-5">
+        <div class="input-group">
+            <input class="form-control py-2 border-right-0 border" type="search" name="specialization_contains" placeholder="Search by Specialization">
+            <span class="input-group-append">
+              <div class="input-group-text bg-transparent">
+                <i class="fa fa-search"></i>
+              </div>
+            </span>
+        </div>
+      </div>
+  </div>
+
+
+         <div class="form-row">
+        <div class ="form-group col-3">
+          <div class="input-group">
+            <input class="form-control py-2 border-right-0 border" type="search" name="exact_gender" placeholder="Search by gender">
+            <span class="input-group-append">
+              <div class="input-group-text bg-transparent">
+                <i class="fa fa-search"></i>
+              </div>
+            </span>
+        </div>
+        </div>
+      </div>
+    
+   
+    <div class="form-group">
+      <div class="form-check">
+        <button type="submit" class="btn btn-primary" >Search</button>
+      </div>
+    </div>
+    
+  </form>
+
+  <hr />
+
+<script>
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable({
+    "paging": true // false to disable pagination (or any other option)
+  });
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>
+
+ <div class="container">
+ <table class="table table-striped table-hover table-bordered" id="dtBasicExample">
+  <thead>
+    <tr>
+      <th scope="col">Student ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Place of Birth</th>
+      <th scope="col">Faculty</th>
+      <th scope="col">Specialization</th>
+
+    </tr>
+    </thead>
+    <tbody>
+	{% for stud in queryset %}  
+      <tr>
+        <td>{{stud.cnp}}</td>
+        <td>{{stud.firstName}}</td>
+        <td>{{stud.lastName}}</td>
+        <td>{{stud.sex}}</td>
+        <td>{{stud.DoB}}</td>
+        <td>{{stud.PoB}}</td>
+        <td>{{stud.facultyName}}</td>
+        <td>{{stud.specializationName}}</td>
+      </tr>
+	  {% endfor %} 
+	</tbody>
+</table>	
+</div>
+
+{%endblock content%}
 
