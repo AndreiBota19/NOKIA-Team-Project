@@ -2,139 +2,134 @@
 
 {% block content%}
 
-  <h3> Filter </h3>
+
+<br>
+<!-- <h4> Select a table: </h4> -->
+
+<!-- <div class="form-row">
+<div class ="col-3">
+<span class="input-group-append">
+<select class="form-control py-2 border-right-0 border" id="select-column">
+        <option disabled="true" selected> Select table </option>
+        <option value="students"> Students</option>
+        <option value="University-table"> Subject </option>
+        <option value="staff"> Staff </option>
+        <option value="grades"> Grades</option>
+        <option value="attendance"> Attendance</option>
+</select>
+<button type="submit" class="btn btn-outline-info" value="Click" >Select</button>
+</span>
+</div>
+</div> -->
 
 
-  <form method="GET" action=".">
-      <div class="form-row">
-        <div class ="form-group col-10">
-          <div class="input-group">
-         
-            <input class="form-control py-2 border-right-0 border" type="search" name="personal_id_is" placeholder="Search by student's personal id">
-            <span class="input-group-append">
-              <div class="input-group-text bg-transparent">
-                <i class="fa fa-search"></i>
-              </div>
-            </span>
-        </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class ="form-group col-10">
-          <div class="input-group">
-            <input class="form-control py-2 border-right-0 border" type="search" name="first_name_contains" placeholder="Search by first name">
-            <span class="input-group-append">
-              <div class="input-group-text bg-transparent">
-                <i class="fa fa-search"></i>
-              </div>
-            </span>
-        </div>
-        </div>
-      </div>
+<br>
+  <h4> Add filters: </h4>
 
-      <div class="form-row">
-        <div class ="form-group col-10">
-          <div class="input-group">
-            <input class="form-control py-2 border-right-0 border" type="search" name="last_name_contains" placeholder="Search by last name">
-            <span class="input-group-append">
-              <div class="input-group-text bg-transparent">
-                <i class="fa fa-search"></i>
-              </div>
-            </span>
-        </div>
-        </div>
-      </div>
+<div class="form-row">
+<div class ="col-3">
+<span class="input-group-append">
 
-      <div class="form-row"> 
-        <div class ="form-group col-md-5">
-          <div class="input-group">
-            <input class="form-control py-2 border-right-0 border" type="search" name="university_contains" placeholder="Search by University">
-            <span class="input-group-append">
-              <div class="input-group-text bg-transparent">
-                <i class="fa fa-search"></i>
-              </div>
-            </span>
-        </div> 
-      </div>
+<select class="form-control py-2 border-right-0 border" name="select" id="select-data">
+        <option disabled="true" selected> Select field </option>
+        <option value="personal_id_is"> Student ID</option>
+        <option value="first_name_contains"> First Name</option>
+        <option value="last_name_contains"> Last Name</option>
+        <!-- <option value="placeofbirth_contains"> Date of Birth</option> -->
+        <option value="placeofbirth_contains"> Place of Birth</option>
+        <option value="university_contains"> University</option>
+        <option value="specialization_contains"> Specialization</option>
+        <option value="exact_gender"> Gender</option>
+        <option value="address_contains"> Address</option>
+        <option value="phoneNumber_contains"> Phone Number</option>
+        <option value="firstNameFather_contains"> Father First Name</option>
+        <option value="firstNameMother_contains"> Mother First Name</option>
+</select>
+<button type="submit" class="btn btn-outline-warning" value="Select" id="button-submit">Add</button>
 
-      
-      <div class ="form-group col-5">
-        <div class="input-group">
-            <input class="form-control py-2 border-right-0 border" type="search" name="specialization_contains" placeholder="Search by Specialization">
-            <span class="input-group-append">
-              <div class="input-group-text bg-transparent">
-                <i class="fa fa-search"></i>
-              </div>
-            </span>
-        </div>
-      </div>
-  </div>
+</span>
 
+</div>
+<button class="btn btn-outline-warning" onClick="window.location.reload();">Reset</button>
+</div>
 
-         <div class="form-row">
-        <div class ="form-group col-3">
-          <div class="input-group">
-            <input class="form-control py-2 border-right-0 border" type="search" name="exact_gender" placeholder="Search by gender">
-            <span class="input-group-append">
-              <div class="input-group-text bg-transparent">
-                <i class="fa fa-search"></i>
-              </div>
-            </span>
-        </div>
-        </div>
-      </div>
-    
-   
-    <div class="form-group">
-      <div class="form-check">
-        <button type="submit" class="btn btn-primary" >Search</button>
-      </div>
-    </div>
-    
-  </form>
+<br>
+<br>
 
-  <hr />
 
 <script>
-$(document).ready(function () {
-  $('#dtBasicExample').DataTable({
-    "paging": true // false to disable pagination (or any other option)
-  });
-  $('.dataTables_length').addClass('bs-select');
+$(document).on('click', '#button-submit', (elem)=> {
+
+let container = $("#form-get");
+console.log(elem);
+console.log('Hello');
+
+
+let div1 = $('<div/>', {'class': 'form-row'});
+let div2 = $('<div/>', {'class': 'form-group col-10'});
+let div3 = $('<div/>', {'class': 'input-group'});
+
+let input = $('<input/>', {'class': 'form-control py-2 border-right-0 border', "id": 'some-id',"type": 'search',"name": $('#select-data :selected').val(), "placeholder": 'Search by' + $('#select-data :selected').text()})
+
+input.appendTo(div3);
+div3.appendTo(div2);
+div2.appendTo(div1);
+
+div1.appendTo(container);
+
 });
 </script>
 
- <div class="container">
- <table class="table table-striped table-hover table-bordered" id="dtBasicExample">
-  <thead>
-    <tr>
-      <th scope="col">Student ID</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Date of Birth</th>
-      <th scope="col">Place of Birth</th>
-      <th scope="col">Faculty</th>
-      <th scope="col">Specialization</th>
+  <form method="GET" action="/viewData" id="form-get">
 
-    </tr>
-    </thead>
-    <tbody>
-	{% for stud in queryset %}  
-      <tr>
-        <td>{{stud.cnp}}</td>
-        <td>{{stud.firstName}}</td>
-        <td>{{stud.lastName}}</td>
-        <td>{{stud.sex}}</td>
-        <td>{{stud.DoB}}</td>
-        <td>{{stud.PoB}}</td>
-        <td>{{stud.facultyName}}</td>
-        <td>{{stud.specializationName}}</td>
-      </tr>
-	  {% endfor %} 
-	</tbody>
-</table>	
-</div>
 
+
+    <h4> Select the columns you want to display: </h4>
+    <div class="form-check form-check-inline">
+    <div class = "tags">
+    <div class="col">
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="id_stud">Student ID</label>
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="firstname_stud">First Name</label>
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="lastname_stud">Last Name</label>
+      <!-- <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="dob_stud">Date of Birth</label> -->
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select"  name="address_stud">Address</label>
+
+    </div>
+    <div class="col">
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="pob_stud">Place of Birth</label>
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="university_stud">University</label>
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="spec_stud">Specialization</label>
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="gender_stud">Gender</label>
+    </div>
+    <div class="col">
+
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="phonenumber_stud">Phone Number</label>
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="ffname_stud">Father First Name</label>
+      <label><input class="form-check-input" type="checkbox" id="checkbox-select" name="mfn_stud">Mother First Name</label>
+    </div>
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    <h4> Filters: </h4>
+    <button type="submit" class="btn btn-outline-warning" id="submit-search">Search</button>
+    <br>
+    <br>
+
+  </form>
+
+  <script>
+    $(document).ready(function(){
+      $("#submit-search").click(function(){
+        var nameFields = [];
+        $.each($("input[name='students']:checked"), function(){
+          nameFields.push($(this).val());
+        });
+
+      });
+    });
+
+  </script>
 {%endblock content%}
-
